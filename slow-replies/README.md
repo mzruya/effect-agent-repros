@@ -1,6 +1,9 @@
 # Replies get slower as a conversation grows
 
-`effect-agent@0.1.0-beta.144`, `effect@4.0.0-rc.117`
+`effect-agent@0.1.0-beta.144`, `effect@4.0.0-rc.117`, `wrangler@4.143.0`, `@cloudflare/vitest-plugin@1.3.1`, Node 24
+
+These are the latest releases, except Effect: rc.118 removed `effect/unstable/ai`, which effect-agent beta.144
+imports.
 
 On the durable hosts, a Thread's reply time grows with the length of its conversation, even with no tools and a
 model that answers instantly. In memory, it stays flat. A Thread handles one request at a time, so anything sent
@@ -11,13 +14,13 @@ reply (ms per reply):
 
 ```
           reply      in-memory sqlite history   node durable     cloudflare
-              1             17              8             33            948
-             25              2              7             26             97
-             50              3              9             36            123
-             75              3             13             45            143
-            100              4             14             50            168
-            125              4             20             72            174
-            150              4             21             81            182
+              1             18              7             32            940
+             25              3              7             21            101
+             50              2              8             33            115
+             75              3             11             40            136
+            100              4             14             56            154
+            125              4             18             60            175
+            150              4             22             78            183
 ```
 
 | Host | Setup |
