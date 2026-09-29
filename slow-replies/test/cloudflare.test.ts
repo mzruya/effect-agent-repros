@@ -8,11 +8,13 @@ import { IdempotencyKey, Principal } from "effect-agent/receipt";
 import { test } from "vitest";
 import { chat, definitions, messages, reported } from "../src/chat.ts";
 
+const total = messages((env as { MESSAGES?: string }).MESSAGES);
+
 const threads = ManagedRuntime.make(CloudflareThreadClient.layerFromBinding({ namespace: env.THREADS }));
 
-// Cloudflare Durable Object host, in local workerd.
-test("replies get slower as the conversation grows", async () => {
-  for (let message = 1; message <= messages; message++) {
+// The Cloudflare durable host (ThreadObject), in local workerd.
+test("cloudflare durable host", async () => {
+  for (let message = 1; message <= total; message++) {
     const started = Date.now();
     await threads.runPromise(Effect.gen(function* () {
       const client = yield* CloudflareThreadClient;
@@ -24,6 +26,6 @@ test("replies get slower as the conversation grows", async () => {
       });
       yield* client.awaitSettlement(receipt);
     }));
-    if (reported(message)) console.log(`reply ${message}: ${Date.now() - started} ms`);
+    if (reported(message, total)) console.log(`cloudflare reply ${message}: ${Date.now() - started} ms`);
   }
 });

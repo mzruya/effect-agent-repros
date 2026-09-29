@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest run --reporter=verbose",
-    "hosts": "node hosts.ts"
+    "compare": "node compare.ts"
   },
   "dependencies": {
     "@effect-agent/platform-cloudflare": "0.1.0-beta.144",

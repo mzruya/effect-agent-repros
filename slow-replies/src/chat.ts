@@ -27,7 +27,8 @@ const ok = ScriptedStreamTurn.make({
 });
 
 export const model = Model.make("scripted", "scripted", Layer.effect(LanguageModel.LanguageModel, LanguageModel.LanguageModel).pipe(
-  Layer.provide(ScriptedModel.layer(Array.from({ length: 1_000 }, () => ok)))));
+  Layer.provide(ScriptedModel.layer(Array.from({ length: 5_000 }, () => ok)))));
 
-export const messages = 150;
-export const reported = (message: number) => message === 1 || message % 25 === 0;
+// How many messages the conversation grows to: MESSAGES=400 npm test.
+export const messages = (value: string | undefined) => Number(value ?? 150);
+export const reported = (message: number, total: number) => message === 1 || message % (total > 200 ? 50 : 25) === 0;
