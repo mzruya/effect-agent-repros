@@ -11,12 +11,17 @@ CompactionError: Compaction coverage cannot be mapped to complete canonical reco
 The run fails before the model answers, and nothing is recorded, so every later message picks the same cut
 and fails too. The Thread can't reply again.
 
-A chat with no tools, the default compactor and default compaction mode, short messages and long replies.
-Message 7 is the first to compact, and it fails:
+A chat with no tools, the default compactor and default compaction mode, short messages and long replies
+(`test/compaction.test.ts`). Message 7 is the first to compact:
 
 ```
-× a chat keeps replying after its history first compacts
-  → message 7: expected Settlement{ …(7) } to match object { outcome: 'completed' }
+message 1: completed
+…
+message 6: completed
+message 7: failed (Compaction coverage cannot be mapped to complete canonical records)
+message 8: failed (Compaction coverage cannot be mapped to complete canonical records)
+message 9: failed (Compaction coverage cannot be mapped to complete canonical records)
+message 10: failed (Compaction coverage cannot be mapped to complete canonical records)
 ```
 
 ## Cause
