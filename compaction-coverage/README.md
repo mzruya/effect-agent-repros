@@ -1,4 +1,4 @@
-# A chat stops replying once its history compacts
+# Compaction failure
 
 `effect-agent@0.1.0-beta.163`, `effect@4.0.0-rc.117`, `vitest@4.1.11`, Node 24
 
