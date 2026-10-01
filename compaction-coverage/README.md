@@ -2,9 +2,6 @@
 
 `effect-agent@0.1.0-beta.163`, `effect@4.0.0-rc.117`, `vitest@4.1.11`, Node 24
 
-These are the latest releases, except Effect: 4.0.0 moved `effect/unstable/ai` to `effect/ai`, and effect-agent
-beta.163 still imports the old path.
-
 Once a conversation passes `contextTokenLimit`, the next message fails, and so does every message after it.
 
 A chat with no tools on the Node durable host, with the default compactor. It compacts past 6,000 tokens, keeping
